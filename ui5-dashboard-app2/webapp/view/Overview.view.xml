@@ -1,0 +1,53 @@
+<mvc:View
+    controllerName="ui5.dashboardapp.controller.App"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+>
+    <Page>
+        <landmarkInfo>
+            <PageAccessibleLandmarkInfo
+                rootRole="Region"
+                rootLabel="{i18n>Overview_rootLabel}"
+                contentRole="Main"
+                contentLabel="{i18n>Overview_contentLabel}"
+                headerRole="Banner"
+                headerLabel="{i18n>Overview_headerLabel}"
+            />
+        </landmarkInfo>
+        <customHeader>
+            <Bar>
+                <contentMiddle>
+                    <Button
+                        icon="sap-icon://navigation-left-arrow"
+                        press=".onNavBack"
+                    />
+                    <Image
+                        width="{logoImg>/imageWidth}"
+                        src="{logoImg>/svgLogo}"
+                        mode="InlineSvg"
+                    />
+                    <Select
+                        forceSelection="false"
+                        selectedKey="{pages>/SelectedPageUrl}"
+                        items="{
+                           path: 'pages>/Pages',
+						sorter: { path: '//PageName' }
+                        }"
+                        change=".onNavToPage"
+                    >
+                        <core:Item
+                            key="{pages>PageUrl}"
+                            text="{pages>PageName}"
+                        />
+                    </Select>
+                </contentMiddle>
+            </Bar>
+        </customHeader>
+        <content>
+            <!-- <mvc:XMLView viewName="ui5.dashboardapp.view.HelloPanel" /> -->
+            <!-- <mvc:XMLView viewName="ui5.dashboardapp.view.InvoiceList" /> -->
+        </content>
+    </Page>
+</mvc:View>
