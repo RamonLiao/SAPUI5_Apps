@@ -42,7 +42,8 @@
             </Bar>
         </customHeader> -->
             <IconTabBar
-                expanded="true"
+                id="idIconTabBar"
+                headerBackgroundDesign="Transparent"
                 class="sapUiSmallMarginBottom sapUiResponsiveContentPadding"
             >
                 <items>
