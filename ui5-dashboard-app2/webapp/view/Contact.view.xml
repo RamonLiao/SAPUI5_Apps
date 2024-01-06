@@ -4,7 +4,11 @@
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
 >
-    <Page title="Contact Info">
+    <Page
+        title="Contact Info"
+        showNavButton="true"
+        navButtonPress=".onNavBack"
+    >
         <content>
             <!-- <mvc:XMLView viewName="ui5.dashboardapp.view.HelloPanel" /> -->
             <!-- <mvc:XMLView viewName="ui5.dashboardapp.view.InvoiceList" /> -->

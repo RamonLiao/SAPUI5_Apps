@@ -1,14 +1,13 @@
 sap.ui.define(
   [
-    "sap/ui/core/mvc/Controller",
-    "sap/ui/core/routing/History",
+    "ui5/dashboardapp/controller/BaseController",
     "sap/ui/Device",
     "sap/ui/model/json/JSONModel",
   ],
-  (Controller, History, Device, JSONModel) => {
+  (BaseController, Device, JSONModel) => {
     "use strict";
 
-    return Controller.extend("ui5.dashboardapp.controller.App", {
+    return BaseController.extend("ui5.dashboardapp.controller.App", {
       onInit() {
         this.getView().addStyleClass(
           this.getOwnerComponent().getContentDensityClass()
@@ -31,7 +30,6 @@ sap.ui.define(
           SelectedPageUrl: "home",
           Pages: [
             { PageUrl: "home", PageName: "Home" },
-            { PageUrl: "overview", PageName: "Overview" },
             { PageUrl: "assembly", PageName: "Assembly" },
             { PageUrl: "contact", PageName: "Contact" },
           ],
@@ -40,23 +38,11 @@ sap.ui.define(
         this.getView().setModel(oPagesModel, "pages");
       },
 
-      onNavBack() {
-        const oHistory = History.getInstance();
-        const sPreviousHash = oHistory.getPreviousHash();
-
-        if (sPreviousHash !== undefined) {
-          window.history.go(-1);
-        } else {
-          const oRouter = this.getOwnerComponent().getRouter();
-          oRouter.navTo("overview", {}, true);
-        }
-      },
-
       onNavToPage(oEvent) {
-        const sToPage = oEvent
-          .getParameters()
-          .selectedItem.getBindingContext("pages")
-          .getProperty("PageUrl");
+        const sToPage = oEvent.getParameter("selectedItem").getKey();
+        //   .getParameters()
+        //   .selectedItem.getBindingContext("pages")
+        //   .getProperty("PageUrl");
         const oRouter = this.getOwnerComponent().getRouter();
         oRouter.navTo(sToPage, {}, true);
       },

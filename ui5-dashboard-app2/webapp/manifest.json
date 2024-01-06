@@ -60,7 +60,12 @@
         "viewType": "XML",
         "path": "ui5.dashboardapp.view",
         "controlId": "app",
-        "controlAggregation": "pages"
+        "controlAggregation": "pages",
+        "transition": "slide",
+        "bypassed": {
+          "target": "notFound"
+        },
+        "async": true
       },
       "routes": [
         {
@@ -82,15 +87,23 @@
       "targets": {
         "overview": {
           "id": "overview",
-          "name": "Overview"
+          "name": "Overview",
+          "level": 1
+        },
+        "notFound": {
+          "id": "notFound",
+          "name": "NotFound",
+          "transition": "show"
         },
         "assembly": {
           "id": "assembly",
-          "name": "Assembly"
+          "name": "Assembly",
+          "level": 2
         },
         "contact": {
           "id": "contact",
-          "name": "Contact"
+          "name": "Contact",
+          "level": 2
         }
       }
     }

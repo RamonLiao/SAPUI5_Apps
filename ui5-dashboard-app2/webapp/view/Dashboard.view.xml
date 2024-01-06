@@ -1,0 +1,78 @@
+<mvc:View
+    controllerName="ui5.dashboardapp.controller.Dashboard"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    height="100%"
+>
+    <Page showHeader="false">
+        <content>
+            <ObjectHeader
+                icon="{images>/avatarImg}"
+                iconDensityAware="false"
+                iconAlt="Joe Blogs"
+                iconActive="true"
+                imageShape="Circle"
+                responsive="true"
+                title="Joe Blogs"
+                intro="France"
+                class="sapUiResponsivePadding--header"
+            />
+
+            <!-- <customHeader>
+            <Bar class="sapUiMediumHeight">
+                <contentLeft>
+                    <l:Grid defaultSpan="XL2 L3 M6 S6">
+                        <l:content>
+                            <VBox alignItems="Center">
+                                <Avatar
+                                    src="{images>/avatarImg}"
+                                    displaySize="XL"
+                                    showBorder="true"
+                                    press="onPress"
+                                />
+                                <Text
+                                    text="Avatar of a product with border"
+                                    class="sapUiSmallMarginTop"
+                                />
+                            </VBox>
+                        </l:content>
+                    </l:Grid>
+                </contentLeft>
+            </Bar>
+        </customHeader> -->
+            <IconTabBar
+                expanded="true"
+                class="sapUiSmallMarginBottom sapUiResponsiveContentPadding"
+            >
+                <items>
+                    <IconTabFilter
+                        key="home"
+                        text="Home"
+                    >
+                        <mvc:XMLView
+                            viewName="ui5.dashboardapp.view.DashboardTabHome"
+                        />
+                    </IconTabFilter>
+                    <IconTabFilter
+                        key="assemblyOptions"
+                        text="Assembly Options"
+                    >
+                        <List
+                            headerText="A List"
+                            showSeparators="Inner"
+                        />
+                    </IconTabFilter>
+                    <IconTabFilter
+                        key="contact"
+                        text="Contact Information"
+                    >
+                        <!-- <FeedInput /> -->
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+
+            <!-- <mvc:XMLView viewName="ui5.dashboardapp.view.InvoiceList" /> -->
+        </content>
+    </Page>
+</mvc:View>

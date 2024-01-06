@@ -46,8 +46,7 @@
             </Bar>
         </customHeader>
         <content>
-            <!-- <mvc:XMLView viewName="ui5.dashboardapp.view.HelloPanel" /> -->
-            <!-- <mvc:XMLView viewName="ui5.dashboardapp.view.InvoiceList" /> -->
+            <mvc:XMLView viewName="ui5.dashboardapp.view.SidePanel" />
         </content>
     </Page>
 </mvc:View>
