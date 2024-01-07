@@ -8,24 +8,29 @@
     <VBox class="sapUiSmallMargin">
         <ProgressIndicator
             class="sapUiSmallMarginBottom"
-            percentValue="{ordersStats>/notStarted/percentValue}"
-            displayValue="Not Started - {ordersStats>/notStarted/value}"
+            percentValue="{ordersSdefectsStatstats>/notApproved/percentValue}"
+            displayValue="Not Approved - {ordersStats>/notStarted/value}"
             showValue="true"
             state="Error"
         />
         <ProgressIndicator
             class="sapUiSmallMarginBottom"
-            percentValue="{ordersStats>/inProgress/percentValue}"
-            displayValue="In Progress - {ordersStats>/inProgress/value}"
+            percentValue="{defectsStats>/approved/percentValue}"
+            displayValue="Approved - {ordersStats>/inProgress/value}"
             showValue="true"
             state="Warning"
         />
         <ProgressIndicator
             class="sapUiSmallMarginBottom"
-            percentValue="{ordersStats>/completed/percentValue}"
+            percentValue="{defectsStats>/completed/percentValue}"
             displayValue="Completed - {ordersStats>/completed/value}"
             showValue="true"
             state="Success"
+        />
+        <Text
+            text="Actual Forecast"
+            textAlign="End"
+            width="100%"
         />
     </VBox>
     <PullToRefresh

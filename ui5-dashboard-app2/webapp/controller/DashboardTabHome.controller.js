@@ -49,6 +49,16 @@ sap.ui.define(
             MessageToast.show("URL: " + oEvent.getParameter("parameters").url);
           }
         },
+
+        onRefresh: function (oEvent) {
+          setTimeout(
+            function () {
+              this.byId("pullToRefresh").hide();
+              //   this._pushNewProduct();
+            }.bind(this),
+            1000
+          );
+        },
       }
     );
   }

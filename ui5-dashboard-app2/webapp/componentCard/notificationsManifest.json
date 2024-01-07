@@ -1,7 +1,7 @@
 {
   "_version": "1.12.0",
   "sap.app": {
-    "id": "ui5.dashboardapp.componentCard",
+    "id": "ui5.dashboardapp.componentCard.NotificationsCard",
     "type": "card",
     "applicationVersion": {
       "version": "1.0.0"
@@ -9,7 +9,7 @@
   },
   "sap.ui5": {
     "rootView": {
-      "viewName": "ui5.dashboardapp.componentCard.View",
+      "viewName": "ui5.dashboardapp.componentCard.NotificationsCard",
       "type": "XML",
       "async": true,
       "id": "app"
@@ -24,13 +24,13 @@
   "sap.card": {
     "type": "Component",
     "header": {
-      "title": "My Work Orders",
-      "subTitle": "Status",
+      "title": "Notifications",
+      "subTitle": "Open Tasks",
       "actions": [
         {
           "type": "Navigation",
           "parameters": {
-            "url": "/peachValley"
+            "url": "/"
           }
         }
       ]

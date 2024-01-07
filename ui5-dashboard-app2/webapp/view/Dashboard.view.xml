@@ -17,7 +17,26 @@
                 title="Joe Blogs"
                 intro="France"
                 class="sapUiResponsivePadding--header"
-            />
+            >
+                <headerContainer>
+                    <HeaderContainer>
+                        <content>
+                            <!-- <HBox alignItems="Center">
+                                <FlexBox alignItems="Center">
+                                    <Text
+                                        text="Avatar of a product with border"
+                                        class="sapUiSmallMarginTop"
+                                    />
+                                </FlexBox>
+                                <Text
+                                    text="Avatar of a product with border"
+                                    class="sapUiSmallMarginTop"
+                                />
+                            </HBox> -->
+                        </content>
+                    </HeaderContainer>
+                </headerContainer>
+            </ObjectHeader>
 
             <!-- <customHeader>
             <Bar class="sapUiMediumHeight">

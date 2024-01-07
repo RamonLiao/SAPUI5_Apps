@@ -26,10 +26,34 @@
                 gap="0.5rem"
             />
         </f:layoutS>
+        <w:Card manifest="{manifests>/component}">
+            <w:layoutData>
+                <f:GridContainerItemLayoutData
+                    minRows="3"
+                    columns="3"
+                />
+            </w:layoutData>
+        </w:Card>
         <w:Card manifest="{manifests>/donut}">
             <w:layoutData>
                 <f:GridContainerItemLayoutData
                     rows="3"
+                    columns="3"
+                />
+            </w:layoutData>
+        </w:Card>
+        <w:Card manifest="{manifests>/component-defects}">
+            <w:layoutData>
+                <f:GridContainerItemLayoutData
+                    minRows="3"
+                    columns="5"
+                />
+            </w:layoutData>
+        </w:Card>
+        <w:Card manifest="{manifests>/component-notifications}">
+            <w:layoutData>
+                <f:GridContainerItemLayoutData
+                    minRows="3"
                     columns="3"
                 />
             </w:layoutData>

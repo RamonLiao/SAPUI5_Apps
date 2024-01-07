@@ -10,19 +10,32 @@
         "type": "Numeric",
         "data": {
           "json": {
-            "n": "43.2",
+            "n": "50.74",
             "u": "%",
             "trend": "Down",
             "valueColor": "Good"
           }
         },
-        "title": "Failure Breakdown - Q1, 2019",
+        "title": "Timesheets by Week",
         "mainIndicator": {
           "number": "{n}",
           "unit": "{u}",
           "trend": "{trend}",
           "state": "{valueColor}"
-        }
+        },
+        "details": "Q1, 2024",
+        "sideIndicators": [
+          {
+            "title": "Target",
+            "number": "500",
+            "unit": "K"
+          },
+          {
+            "title": "Deviation",
+            "number": "-89.75",
+            "unit": "%"
+          }
+        ]
       },
       "content": {
         "chartType": "StackedColumn",
@@ -34,7 +47,7 @@
         "plotArea": {
           "dataLabel": {
             "visible": false,
-            "showTotal": false
+            "showTotal": true
           },
           "categoryAxisText": {
             "visible": false
@@ -44,33 +57,34 @@
           }
         },
         "title": {
-          "visible": false
+          "text": "Planned vs. Actual",
+          "alignment": "Left"
         },
         "measureAxis": "valueAxis",
         "dimensionAxis": "categoryAxis",
+
         "data": {
           "json": {
             "list": [
               {
-                "Category": "Weather",
-                "Revenue": 431000.22,
-                "Cost": 230000.0,
-                "Target": 500000.0,
-                "Budget": 210000.0
+                "Category": "CW14",
+                "Planned": 431000.22,
+                "Actual": 230000.0
               },
               {
-                "Category": "Mechanics",
-                "Revenue": 494000.3,
-                "Cost": 238000.0,
-                "Target": 500000.0,
-                "Budget": 224000.0
+                "Category": "CW15",
+                "Planned": 494000.3,
+                "Actual": 238000.0
               },
               {
-                "Category": "Software",
-                "Revenue": 491000.17,
-                "Cost": 221000.0,
-                "Target": 500000.0,
-                "Budget": 238000.0
+                "Category": "CW16",
+                "Planned": 491000.17,
+                "Actual": 221000.0
+              },
+              {
+                "Category": "CW17",
+                "Planned": 491000.17,
+                "Actual": 221000.0
               }
             ]
           },
@@ -84,16 +98,12 @@
         ],
         "measures": [
           {
-            "label": "Revenue",
-            "value": "{Revenue}"
+            "label": "Planned",
+            "value": "{Planned}"
           },
           {
-            "label": "Cost",
-            "value": "{Cost}"
-          },
-          {
-            "label": "Target",
-            "value": "{Target}"
+            "label": "Actual",
+            "value": "{Actual}"
           }
         ]
       }
@@ -107,7 +117,8 @@
     "sap.card": {
       "type": "Analytical",
       "header": {
-        "title": "Weather Failures",
+        "title": "Reservations",
+        "subTitle": "Issued vs Not Issued",
         "actions": [
           {
             "type": "Navigation",
@@ -137,27 +148,27 @@
           "json": {
             "measures": [
               {
-                "measureName": "Storm Wind",
+                "measureName": "Issued",
                 "value": 1564235.29
               },
               {
-                "measureName": "Storm Wind",
+                "measureName": "Issued",
                 "value": 157913.07
               },
               {
-                "measureName": "Rain",
+                "measureName": "NotIssued",
                 "value": 1085567.22
               },
               {
-                "measureName": "Rain",
+                "measureName": "NotIssued",
                 "value": 245609.486884
               },
               {
-                "measureName": "Temperature",
+                "measureName": "NotIssued",
                 "value": 345292.06
               },
               {
-                "measureName": "Temperature",
+                "measureName": "NotIssued",
                 "value": 82922.07
               }
             ]
@@ -324,6 +335,8 @@
     }
   },
   "component": "./componentCard/manifest.json",
+  "component-defects": "./componentCard/defectsManifest.json",
+  "component-notifications": "./componentCard/notificationsManifest.json",
   "list2": {
     "sap.app": {
       "id": "ui5.dashboardapp.model.list2",
