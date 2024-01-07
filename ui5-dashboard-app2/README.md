@@ -22,3 +22,25 @@
 
 ![ui5-dashboard](./Images/ui5-dashboard5.png)
 ![ui5-dashboard](./Images/ui5-dashboard6.png)
+
+<br>
+
+## Run the program
+
+Download the repo and open a terminal to run the following command lines sequentially.
+
+```Console
+npm i -D @ui5/cli
+```
+
+```Console
+npm init
+```
+
+```Console
+ui5 init
+```
+
+```Console
+npm start
+```

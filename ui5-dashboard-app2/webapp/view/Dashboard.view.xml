@@ -2,64 +2,57 @@
     controllerName="ui5.dashboardapp.controller.Dashboard"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
     xmlns:l="sap.ui.layout"
     height="100%"
 >
     <Page showHeader="false">
         <content>
-            <ObjectHeader
-                icon="{images>/avatarImg}"
-                iconDensityAware="false"
-                iconAlt="Joe Blogs"
-                iconActive="true"
-                imageShape="Circle"
-                responsive="true"
-                title="Joe Blogs"
-                intro="France"
-                class="sapUiResponsivePadding--header"
-            >
-                <headerContainer>
-                    <HeaderContainer>
-                        <content>
-                            <!-- <HBox alignItems="Center">
-                                <FlexBox alignItems="Center">
-                                    <Text
-                                        text="Avatar of a product with border"
-                                        class="sapUiSmallMarginTop"
-                                    />
-                                </FlexBox>
-                                <Text
-                                    text="Avatar of a product with border"
-                                    class="sapUiSmallMarginTop"
-                                />
-                            </HBox> -->
-                        </content>
-                    </HeaderContainer>
-                </headerContainer>
-            </ObjectHeader>
+            <Panel>
+                <ObjectHeader
+                    icon="{images>/avatarImg}"
+                    iconDensityAware="false"
+                    iconAlt="Joe Blogs"
+                    iconActive="true"
+                    imageShape="Circle"
+                    responsive="true"
+                    title="Joe Blogs"
+                    intro="France"
+                    backgroundDesign="Transparent"
+                />
 
-            <!-- <customHeader>
-            <Bar class="sapUiMediumHeight">
-                <contentLeft>
-                    <l:Grid defaultSpan="XL2 L3 M6 S6">
-                        <l:content>
-                            <VBox alignItems="Center">
-                                <Avatar
-                                    src="{images>/avatarImg}"
-                                    displaySize="XL"
-                                    showBorder="true"
-                                    press="onPress"
-                                />
-                                <Text
-                                    text="Avatar of a product with border"
-                                    class="sapUiSmallMarginTop"
-                                />
-                            </VBox>
-                        </l:content>
-                    </l:Grid>
-                </contentLeft>
-            </Bar>
-        </customHeader> -->
+                <Text
+                    text="Avatar of a product with border"
+                    class="sapUiSmallMarginTop"
+                />
+
+                <FlexBox alignItems="Start">
+                    <ObjectHeader
+                        icon="{images>/avatarImg}"
+                        iconDensityAware="false"
+                        iconAlt="Joe Blogs"
+                        iconActive="true"
+                        imageShape="Circle"
+                        responsive="true"
+                        title="Joe Blogs"
+                        intro="France"
+                        backgroundDesign="Transparent"
+                    >
+                        <!-- <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData> -->
+                    </ObjectHeader>
+                    <Text
+                        text="Avatar of a product with border"
+                        class="sapUiSmallMarginTop"
+                    >
+                        <!-- <layoutData>
+                            <FlexItemData growFactor="3" />
+                        </layoutData> -->
+                    </Text>
+                </FlexBox>
+            </Panel>
+
             <IconTabBar
                 id="idIconTabBar"
                 headerBackgroundDesign="Transparent"
