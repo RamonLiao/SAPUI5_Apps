@@ -1,0 +1,2 @@
+sap.ui.define(["ui5/dashboardapp/controller/BaseController"],e=>{"use strict";return e.extend("ui5.dashboardapp.controller.SidePanel",{onInit(){let e=this.byId("mySidePanel");e.setSidePanelPosition("Left")},onToggle:function(e){}})});
+//# sourceMappingURL=SidePanel.controller.js.map

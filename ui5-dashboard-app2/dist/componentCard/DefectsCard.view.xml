@@ -1,0 +1,40 @@
+<mvc:View
+    controllerName="ui5.dashboardapp.componentCard.ComponentCard"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    width="100%"
+    displayBlock="true"
+>
+    <VBox class="sapUiSmallMargin">
+        <ProgressIndicator
+            class="sapUiSmallMarginBottom"
+            percentValue="{ordersSdefectsStatstats>/notApproved/percentValue}"
+            displayValue="Not Approved - {ordersStats>/notStarted/value}"
+            showValue="true"
+            state="Error"
+        />
+        <ProgressIndicator
+            class="sapUiSmallMarginBottom"
+            percentValue="{defectsStats>/approved/percentValue}"
+            displayValue="Approved - {ordersStats>/inProgress/value}"
+            showValue="true"
+            state="Warning"
+        />
+        <ProgressIndicator
+            class="sapUiSmallMarginBottom"
+            percentValue="{defectsStats>/completed/percentValue}"
+            displayValue="Completed - {ordersStats>/completed/value}"
+            showValue="true"
+            state="Success"
+        />
+        <Text
+            text="Actual Forecast"
+            textAlign="End"
+            width="100%"
+        />
+    </VBox>
+    <PullToRefresh
+        id="pullToRefresh"
+        refresh="onRefresh"
+    />
+</mvc:View>

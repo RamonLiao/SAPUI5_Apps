@@ -1,0 +1,39 @@
+{
+  "_version": "1.12.0",
+  "sap.app": {
+    "id": "ui5.dashboardapp.componentCard.NotificationsCard",
+    "type": "card",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "ui5.dashboardapp.componentCard.NotificationsCard",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+    "dependencies": {
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    }
+  },
+  "sap.card": {
+    "type": "Component",
+    "header": {
+      "title": "Notifications",
+      "subTitle": "Open Tasks",
+      "actions": [
+        {
+          "type": "Navigation",
+          "parameters": {
+            "url": "/"
+          }
+        }
+      ]
+    }
+  }
+}

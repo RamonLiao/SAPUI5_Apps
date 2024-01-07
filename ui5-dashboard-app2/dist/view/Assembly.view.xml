@@ -1,0 +1,17 @@
+<mvc:View
+    controllerName="ui5.dashboardapp.controller.Assembly"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+>
+    <Page
+        title="Assembly Options"
+        showNavButton="true"
+        navButtonPress=".onNavBack"
+    >
+        <content>
+            <!-- <mvc:XMLView viewName="ui5.dashboardapp.view.HelloPanel" /> -->
+            <!-- <mvc:XMLView viewName="ui5.dashboardapp.view.InvoiceList" /> -->
+        </content>
+    </Page>
+</mvc:View>
