@@ -2,7 +2,7 @@
 
 ## Information
 
-The prototype of UI5 dashboard v1 has been released. It is available to run the app by opening `index.html` in [dist](./dist/) folder.
+The prototype of UI5 dashboard v1.0 has been released. It is available to run the app by opening `index.html` in [dist](./dist/) folder.
 
 ## Progress
 
