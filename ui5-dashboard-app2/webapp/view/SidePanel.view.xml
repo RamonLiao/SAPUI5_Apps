@@ -1,0 +1,148 @@
+<mvc:View
+    controllerName="ui5.dashboardapp.controller.SidePanel"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:mvc="sap.ui.core.mvc"
+    height="100%"
+    displayBlock="true"
+>
+    <Page showHeader="false">
+        <content>
+            <f:SidePanel
+                id="mySidePanel"
+                toggle="onToggle"
+            >
+                <f:items>
+                    <f:SidePanelItem
+                        icon="sap-icon://filter"
+                        text="Filter"
+                    >
+                        <VBox>
+                            <Text
+                                text="Filter Content"
+                                class="sapUiSmallMarginBottom"
+                            />
+                            <Text
+                                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                            />
+                            <Switch />
+                            <Button text="Press me" />
+                        </VBox>
+                    </f:SidePanelItem>
+                    <f:SidePanelItem
+                        icon="sap-icon://history"
+                        text="History"
+                    >
+                        <VBox>
+                            <Text
+                                text="Static Content"
+                                class="sapUiSmallMarginBottom"
+                            />
+                            <Button text="Press me" />
+                            <Button text="Hit me" />
+                            <Button text="Touch me" />
+                        </VBox>
+                    </f:SidePanelItem>
+                    <f:SidePanelItem
+                        icon="sap-icon://attachment"
+                        text="Attachment"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://discussion"
+                        text="Discussion"
+                    >
+                        <VBox>
+                            <Label
+                                text="Marauder's Map"
+                                class="sapUiSmallMarginBottom"
+                            />
+                            <Text
+                                text="I solemnly swear that I am up to no good."
+                                class="sapUiSmallMarginBottom"
+                            />
+                            <Text
+                                text="- Harry Potter"
+                                class="sapUiSmallMarginBottom"
+                            />
+                            <HBox>
+                                <Button
+                                    text="Yes"
+                                    type="Success"
+                                />
+                                <Button
+                                    text="No"
+                                    type="Negative"
+                                />
+                            </HBox>
+                        </VBox>
+                    </f:SidePanelItem>
+                    <f:SidePanelItem
+                        icon="sap-icon://customer-and-contacts"
+                        text="Customer and Contacts"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://decision"
+                        text="Let's"
+                        enabled="false"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://my-view"
+                        text="Build"
+                        enabled="false"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://biometric-face"
+                        text="Something!!!"
+                        enabled="false"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://create-leave-request"
+                        text="Go on vacation"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://family-protection"
+                        text="Meet your family"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://lab"
+                        text="Do a research"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://theater"
+                        text="Go to the theater"
+                        enabled="false"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://taxi"
+                        text="Take a taxi"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://vehicle-repair"
+                        text="Repair your car"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://wounds-doc"
+                        text="Visit a doctor"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://umbrella"
+                        text="Take an umbrella"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://puzzle"
+                        text="Solve a puzzle"
+                    />
+                    <f:SidePanelItem
+                        icon="sap-icon://picture"
+                        text="Draw a picture"
+                        enabled="false"
+                    />
+                </f:items>
+
+                <f:mainContent>
+                    <mvc:XMLView viewName="ui5.dashboardapp.view.Dashboard" />
+                </f:mainContent>
+            </f:SidePanel>
+        </content>
+    </Page>
+</mvc:View>

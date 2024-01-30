@@ -1,0 +1,39 @@
+{
+  "_version": "1.12.0",
+  "sap.app": {
+    "id": "ui5.dashboardapp.componentCard",
+    "type": "card",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "ui5.dashboardapp.componentCard.View",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+    "dependencies": {
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    }
+  },
+  "sap.card": {
+    "type": "Component",
+    "header": {
+      "title": "My Work Orders",
+      "subTitle": "Status",
+      "actions": [
+        {
+          "type": "Navigation",
+          "parameters": {
+            "url": "/peachValley"
+          }
+        }
+      ]
+    }
+  }
+}

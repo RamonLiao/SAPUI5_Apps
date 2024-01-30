@@ -1,0 +1,35 @@
+<mvc:View
+    controllerName="ui5.dashboardapp.componentCard.ComponentCard"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    width="100%"
+    displayBlock="true"
+>
+    <VBox class="sapUiSmallMargin">
+        <ProgressIndicator
+            class="sapUiSmallMarginBottom"
+            percentValue="{ordersStats>/notStarted/percentValue}"
+            displayValue="Not Started - {ordersStats>/notStarted/value}"
+            showValue="true"
+            state="Error"
+        />
+        <ProgressIndicator
+            class="sapUiSmallMarginBottom"
+            percentValue="{ordersStats>/inProgress/percentValue}"
+            displayValue="In Progress - {ordersStats>/inProgress/value}"
+            showValue="true"
+            state="Warning"
+        />
+        <ProgressIndicator
+            class="sapUiSmallMarginBottom"
+            percentValue="{ordersStats>/completed/percentValue}"
+            displayValue="Completed - {ordersStats>/completed/value}"
+            showValue="true"
+            state="Success"
+        />
+    </VBox>
+    <PullToRefresh
+        id="pullToRefresh"
+        refresh="onRefresh"
+    />
+</mvc:View>

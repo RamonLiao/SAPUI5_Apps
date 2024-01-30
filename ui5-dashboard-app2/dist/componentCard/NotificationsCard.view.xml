@@ -1,0 +1,31 @@
+<mvc:View
+    controllerName="ui5.dashboardapp.componentCard.ComponentCard"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    width="100%"
+    height="100%"
+>
+    <html:style>
+        .sapUiObjNumFontSize span{
+            font-size: 3.5rem;
+            line-height: normal;
+        }
+    </html:style>
+    <VBox class="sapUiMediumMargin">
+        <ObjectNumber
+            emphasized="true"
+            number="{tasksStats>/openTasks}"
+            state="{
+				path: 'tasksStats>/openTasks',
+				formatter: '.formatter.tasksState'
+			}"
+            textAlign="Center"
+            class="sapUiObjNumFontSize"
+        />
+    </VBox>
+    <PullToRefresh
+        id="pullToRefresh"
+        refresh="onRefresh"
+    />
+</mvc:View>

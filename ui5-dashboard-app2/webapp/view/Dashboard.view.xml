@@ -1,0 +1,177 @@
+<mvc:View
+    controllerName="ui5.dashboardapp.controller.Dashboard"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:l="sap.ui.layout"
+    height="100%"
+>
+    <html:style>
+        .sapUiHeaderNumFontSize span{
+            font-size: 2.5rem;
+            line-height: normal;
+        }
+        .sapUiHeaderLabel span{
+            color: #1d2d3e;
+        }
+        .sapUiHeaderObjStatusBold span {
+            font-weight: bold;
+        }
+    </html:style>
+
+    <f:DynamicPage
+        id="dynamicPageId"
+        headerExpanded="{/headerExpanded}"
+        toggleHeaderOnTitleClick="{/titleClickable}"
+    >
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:content>
+                    <l:HorizontalLayout allowWrapping="true">
+                        <l:VerticalLayout class="sapUiMediumMarginEnd">
+                            <ObjectHeader
+                                icon="{images>/avatarImg}"
+                                iconDensityAware="false"
+                                iconAlt="Joe Blogs"
+                                iconActive="true"
+                                imageShape="Circle"
+                                responsive="true"
+                                title="Joe Blogs"
+                                intro="France"
+                                backgroundDesign="Transparent"
+                                fullScreenOptimized="true"
+                            />
+                        </l:VerticalLayout>
+                        <l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                            <HBox>
+                                <VBox class="sapUiSmallMargin">
+                                    <Label
+                                        text="{employeeStats>/acSlotAssigned/text}"
+                                        textAlign="Center"
+                                        design="Bold"
+                                        class="sapUiHeaderLabel"
+                                    />
+                                    <ObjectNumber
+                                        emphasized="true"
+                                        number="{employeeStats>/acSlotAssigned/value}"
+                                        state="{employeeStats>/acSlotAssigned/state}"
+                                        textAlign="Center"
+                                        class="sapUiHeaderNumFontSize"
+                                    />
+                                </VBox>
+                                <VBox class="sapUiSmallMargin">
+                                    <Label
+                                        text="{employeeStats>/assignedWorkOrders/text}"
+                                        textAlign="Center"
+                                        design="Bold"
+                                        class="sapUiHeaderLabel"
+                                    />
+                                    <ObjectNumber
+                                        emphasized="true"
+                                        number="{employeeStats>/assignedWorkOrders/value}"
+                                        state="{employeeStats>/assignedWorkOrders/state}"
+                                        textAlign="Center"
+                                        class="sapUiHeaderNumFontSize"
+                                    />
+                                </VBox>
+                                <VBox class="sapUiSmallMargin">
+                                    <Label
+                                        text="{employeeStats>/clockedOnJobs/text}"
+                                        textAlign="Center"
+                                        design="Bold"
+                                        class="sapUiHeaderLabel"
+                                    />
+                                    <ObjectNumber
+                                        emphasized="true"
+                                        number="{employeeStats>/clockedOnJobs/value}"
+                                        state="{employeeStats>/clockedOnJobs/state}"
+                                        textAlign="Center"
+                                        class="sapUiHeaderNumFontSize"
+                                    />
+                                </VBox>
+                                <VBox class="sapUiSmallMargin">
+                                    <Label
+                                        text="{employeeStats>/missingTimesheets/text}"
+                                        textAlign="Center"
+                                        design="Bold"
+                                        class="sapUiHeaderLabel"
+                                    />
+                                    <ObjectNumber
+                                        emphasized="true"
+                                        number="{employeeStats>/missingTimesheets/value}"
+                                        state="{employeeStats>/missingTimesheets/state}"
+                                        textAlign="Center"
+                                        class="sapUiHeaderNumFontSize"
+                                    />
+                                </VBox>
+                            </HBox>
+                        </l:VerticalLayout>
+                    </l:HorizontalLayout>
+                </f:content>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <l:HorizontalLayout allowWrapping="true">
+                    <l:VerticalLayout class="sapUiMediumMarginEnd">
+                        <ObjectAttribute title="Location" />
+                        <ObjectAttribute text="Manchester" />
+                    </l:VerticalLayout>
+                    <l:VerticalLayout class="sapUiMediumMarginEnd">
+                        <ObjectAttribute title="Mood" />
+                        <ObjectAttribute text="Amaizing" />
+                    </l:VerticalLayout>
+                    <l:VerticalLayout class="sapUiMediumMarginEnd">
+                        <ObjectAttribute title="Let's build an app" />
+                        <ObjectAttribute text="Yes!" />
+                    </l:VerticalLayout>
+
+                    <l:VerticalLayout class="sapUiMediumMarginEnd">
+                        <ObjectAttribute title="Availability" />
+                        <ObjectStatus
+                            text="Working"
+                            state="Success"
+                            class="sapUiHeaderObjStatusBold"
+                        />
+                    </l:VerticalLayout>
+                </l:HorizontalLayout>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <IconTabBar
+                id="idIconTabBar"
+                headerBackgroundDesign="Transparent"
+                class="sapUiSmallMarginBottom sapUiResponsiveContentPadding"
+            >
+                <items>
+                    <IconTabFilter
+                        key="home"
+                        text="Home"
+                    >
+                        <mvc:XMLView
+                            viewName="ui5.dashboardapp.view.DashboardTabHome"
+                        />
+                    </IconTabFilter>
+                    <IconTabFilter
+                        key="assemblyOptions"
+                        text="Assembly Options"
+                    >
+                        <List
+                            headerText="A List"
+                            showSeparators="Inner"
+                        />
+                    </IconTabFilter>
+                    <IconTabFilter
+                        key="contact"
+                        text="Contact Information"
+                    >
+                        <!-- <FeedInput /> -->
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+
+            <!-- <mvc:XMLView viewName="ui5.dashboardapp.view.InvoiceList" /> -->
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,13 @@
+{
+  "name": "ui5.dashboard",
+  "version": "1.0.0",
+  "description": "The UI5 Dashboard application",
+  "scripts": {
+    "start": "ui5 serve -o index.html",
+    "build": "ui5 build -a"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^3.8.0",
+    "ui5-middleware-simpleproxy": "^3.2.10"
+  }
+}

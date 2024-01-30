@@ -1,0 +1,13 @@
+{
+  "name": "ui5.imgeditor",
+  "version": "1.0.0",
+  "description": "The UI5 image editor application",
+  "scripts": {
+    "start": "ui5 serve -o index.html",
+    "build": "ui5 build -a"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^3.9.0",
+    "to": "^0.2.9"
+  }
+}
