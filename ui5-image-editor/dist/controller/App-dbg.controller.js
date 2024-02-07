@@ -4,20 +4,53 @@ sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
     "custom/FilerobotImageEditor",
+    "sap/ui/Device",
+    "sap/ui/model/json/JSONModel",
+    "sap/m/Image",
+    "sap/ui/core/Icon",
+    "custom/JSZip",
     "sap/m/MessageToast",
   ],
-  (Controller, FilerobotImageEditor, MessageToast) => {
+  (
+    Controller,
+    FilerobotImageEditor,
+    Device,
+    JSONModel,
+    Image,
+    JSZip,
+    MessageToast
+  ) => {
     "use strict";
 
-    let filerobotImageEditor2;
+    let imgCount = 0;
+    let imgEditors = {};
+    let filerobotImageEditor;
+    let currentImgId;
 
     return Controller.extend("ui5.imgeditor.controller.App", {
-      onInit() {},
+      onInit() {
+        let iPagesCount = 1;
+
+        if (Device.system.desktop) {
+          iPagesCount = 4;
+        } else if (Device.system.tablet) {
+          iPagesCount = 2;
+        }
+
+        let oSettingsModel = new JSONModel({ pagesCount: iPagesCount });
+        this.getView().setModel(oSettingsModel, "settings");
+
+        let oimgEditorsModel = new JSONModel(imgEditors);
+        this.getView().setModel(oimgEditorsModel, "imgEditors");
+
+        this._initialiseCarousel();
+      },
 
       onBeforeRendering() {},
 
       onAfterRendering() {},
 
+      // Convert Base64 String to File Size
       _getFileSizeInBase64: function (sBase64String) {
         const padding = sBase64String.endsWith("==")
           ? 2
@@ -30,9 +63,11 @@ sap.ui.define(
         return { sizeInBytes, sizeInKB, sizeInMB };
       },
 
-      onUpload: function (oEvent) {
+      // Second Icon Tab : Upload and Show Image
+      onUploadnShow: function (oEvent) {
         var oFileUploader = this.getView().byId("myFileUploader");
         var oFile = oFileUploader.oFileUpload.files[0];
+
         var oReader = new FileReader();
 
         oReader.onload = function (oEvent) {
@@ -42,55 +77,44 @@ sap.ui.define(
           });
           var oPanel = this.getView().byId("myPanel");
           oPanel.addContent(oImage);
-
-          // this.onOpenImgEditor(sBase64Image);
         }.bind(this);
 
         oReader.readAsDataURL(oFile);
       },
 
-      onUploadComplete: function (oEvent) {},
+      // First Icon Tab: Upload Image to Carousel
+      onUploadAddImage: function () {
+        let oFileUploader = this.getView().byId("fileUploaderCarousel");
+        let oFile = oFileUploader.oFileUpload.files[0];
 
-      onUploadPress: function () {
-        let oFileUploader = this.getView().byId("fileUploader");
-        var oFile = oFileUploader.oFileUpload.files[0];
-        var oReader = new FileReader();
+        if (oFile) {
+          let oReader = new FileReader();
 
-        oReader.onload = function (oEvent) {
-          let sBase64Image = oEvent.target.result;
-          this.onOpenImgEditor(sBase64Image);
-        }.bind(this);
+          oReader.onload = function (oEvent) {
+            let sBase64Image = oEvent.target.result;
+            this._addImageToCarousel(sBase64Image);
+          }.bind(this);
 
-        oReader.readAsDataURL(oFile);
+          oReader.readAsDataURL(oFile);
+        }
       },
 
-      onOpenImgEditor: function (sImg) {
-        const _getFileSizeInBase64 = this._getFileSizeInBase64;
+      // Open Image Editor
+      onOpenImgEditor: function (sImg, sImgId) {
+        if (filerobotImageEditor && currentImgId !== sImgId) {
+          filerobotImageEditor.terminate();
+        }
+
+        // const _getFileSizeInBase64 = this._getFileSizeInBase64;
         const { TABS, TOOLS } = FilerobotImageEditor;
         const config = {
           source: sImg,
           onSave: function (editedImageObject, designState) {
-            var oLink = document.createElement("a");
+            this._saveAll(imgEditors);
+          }.bind(this),
 
-            oLink.href = editedImageObject.imageBase64;
-            oLink.download = editedImageObject.fullName;
-            oLink.click();
+          onBeforeSave: function (imageFileInfo) {},
 
-            console.log("Saved", editedImageObject, designState);
-
-            // let base64StringOnSave = String(
-            //   editedImageObject.imageBase64
-            // ).slice(21); // remove "data:image/png;base64,"
-            // console.log(_getFileSizeInBase64(base64StringOnSave));
-          },
-          onBeforeSave: function (imageFileInfo) {
-            // console.log("BeforeSave", imageFileInfo);
-          },
-          onModify: function (currentImageDesignState) {
-            // console.log("Modify", currentImageDesignState);
-            // let base64String = currentImageDesignState.imgSrc.slice(21); // remove "data:image/png;base64,"
-            // console.log(_getFileSizeInBase64(base64String));
-          },
           annotationsCommon: {
             fill: "#00000000",
             stroke: "#ff0000",
@@ -151,23 +175,125 @@ sap.ui.define(
           defaultTabId: TABS.ANNOTATE, // or 'Annotate'
           defaultToolId: TOOLS.ELLIPSE, // or 'Text'
           defaultSavedImageName: "image",
+          defaultSavedImageType: "jpg",
+          // defaultSavedImageQuality: 0.5, // possible values: [0.1 - 1.0]
         };
 
         let oControl = this.getView().byId("imgContainer");
         let oDomRef = oControl.getDomRef();
-        console.log(oControl);
-        console.log(oDomRef);
-        const filerobotImageEditor = (filerobotImageEditor2 =
-          new FilerobotImageEditor(oDomRef, config));
+        this.getView().byId("imgContainer").destroyContent();
+        filerobotImageEditor = new FilerobotImageEditor(oDomRef, config);
 
         filerobotImageEditor.render({
           onClose: (closingReason) => {
-            console.log("Closing reason", closingReason);
             filerobotImageEditor.terminate();
           },
+
+          // Get modified info during editing
+          onModify: function (currentImageDesignState) {
+            // Get modified image base64
+            let oNewImg = filerobotImageEditor.getCurrentImgData();
+            let sNewImg = oNewImg.imageData.imageBase64;
+
+            // Update modified image to image model
+            imgEditors[sImgId] = sNewImg;
+            this.getView().getModel("imgEditors").setData(imgEditors);
+          }.bind(this),
         });
 
-        console.log(filerobotImageEditor.getCurrentImgData());
+        currentImgId = sImgId;
+      },
+
+      // Initialise Carousel Container
+      _initialiseCarousel: function () {
+        let oCarousel = this.getView().byId("carouselSample");
+        oCarousel.destroyPages();
+
+        if (Device.system.desktop) {
+          oCarousel.setShowPageIndicator(false);
+        } else if (Device.system.tablet || Device.system.phone) {
+          oCarousel.setShowPageIndicator(true);
+          oCarousel.setPageIndicatorBackgroundDesign("Translucent"); // [Solid, Translucent, Transparent]
+          oCarousel.setPageIndicatorBorderDesign("None"); // [None, Solid]
+        }
+      },
+
+      // Add image to Carousel
+      _addImageToCarousel: function (sBase64Image) {
+        let sImgId = "img" + imgCount;
+
+        imgEditors[sImgId] = sBase64Image;
+        this.getView().getModel("imgEditors").setData(imgEditors);
+
+        let oCarousel = this.getView().byId("carouselSample");
+        let oImage = new Image(sImgId, {
+          src: `{imgEditors>/${sImgId}}`,
+          height: "8rem",
+        });
+        oImage.attachPress(this.onEditImage.bind(this));
+
+        oCarousel.addPage(oImage); // Add image to carousel
+        this.onOpenImgEditor(sBase64Image, sImgId); // Open image editor
+
+        imgCount++;
+      },
+
+      // Click an image to open image editor
+      onEditImage(oEvent) {
+        let sImgId = oEvent.getParameter("id");
+        if (currentImgId === sImgId) {
+          return;
+        }
+        let oSource = oEvent.getSource();
+        let sBase64Image = oSource.mProperties.src;
+        this.onOpenImgEditor(sBase64Image, sImgId);
+      },
+
+      _saveAll: function (oEditors) {
+        if (Object.keys(oEditors).length > 0) {
+          // ----- Download All Images Individually-----
+          for (const id in oEditors) {
+            let oLink = document.createElement("a");
+
+            oLink.href = oEditors[id];
+            oLink.download = id;
+            oLink.click();
+
+            console.log("Saved", id);
+          }
+
+          // ----- Zip File and Download -----
+          // const zip = new JSZip();
+
+          // for (const id in oEditors) {
+          //   const base64StringArr = String(oEditors[id]).split(",");
+
+          //   // let base64StringOnSave = String(oEditors[id]).slice(21); // remove "data:image/png;base64,"
+          //   let base64StringOnSave = base64StringArr[1];
+          //   zip.file(id + ".jpg", base64StringOnSave, {
+          //     base64: true,
+          //   });
+          // }
+
+          // zip.generateAsync({ type: "blob" }).then(function (blob) {
+          //   // Create a link and download the blob
+          //   const sUrl = URL.createObjectURL(blob);
+          //   const oLink = document.createElement("a");
+          //   oLink.href = sUrl;
+          //   oLink.download = "images.zip";
+          //   oLink.click();
+
+          //   URL.revokeObjectURL(sUrl);
+          // });
+
+          MessageToast.show("All Images Saved");
+        } else {
+          MessageToast.show("No Images to be saved");
+        }
+      },
+
+      onSaveAll: function (oEvent) {
+        this._saveAll(imgEditors);
       },
     });
   }
